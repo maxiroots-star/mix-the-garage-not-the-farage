@@ -5,34 +5,46 @@ const playA = document.getElementById("playA");
 const playB = document.getElementById("playB");
 const crossfader = document.getElementById("crossfader");
 
-/* FORCE AUDIO UNLOCK */
-function unlock() {
+/* =========================
+   🔓 AUDIO UNLOCK (MOBILE FIX)
+========================= */
+function unlockAudio() {
     trackA.volume = 0.5;
     trackB.volume = 0.5;
 
-    // preload trick
-    trackA.play().then(() => trackA.pause()).catch(()=>{});
-    trackB.play().then(() => trackB.pause()).catch(()=>{});
+    // preload / unlock trick
+    trackA.play().then(() => trackA.pause()).catch(() => {});
+    trackB.play().then(() => trackB.pause()).catch(() => {});
 }
 
-document.addEventListener("click", unlock, { once: true });
-document.addEventListener("touchstart", unlock, { once: true });
+document.addEventListener("click", unlockAudio, { once: true });
+document.addEventListener("touchstart", unlockAudio, { once: true });
 
-/* PLAY BUTTONS */
+/* =========================
+   ▶ PLAY BUTTONS
+========================= */
 playA.addEventListener("click", () => {
     trackA.currentTime = 0;
-    trackA.play();
+    trackA.play().catch(err => console.log("Track A error:", err));
 });
 
 playB.addEventListener("click", () => {
     trackB.currentTime = 0;
-    trackB.play();
+    trackB.play().catch(err => console.log("Track B error:", err));
 });
 
-/* CROSSFADER */
+/* =========================
+   🎚 CROSSFADER
+========================= */
 crossfader.addEventListener("input", () => {
-    let v = crossfader.value / 100;
+    let value = crossfader.value / 100;
 
-    trackA.volume = 1 - v;
-    trackB.volume = v;
+    trackA.volume = 1 - value;
+    trackB.volume = value;
 });
+
+/* =========================
+   🧪 DEBUG (optional but helpful)
+========================= */
+trackA.addEventListener("error", () => console.log("❌ Track A failed to load"));
+trackB.addEventListener("error", () => console.log("❌ Track B failed to load"));
