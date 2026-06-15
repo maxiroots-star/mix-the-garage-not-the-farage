@@ -5,7 +5,7 @@ const playA = document.getElementById("playA");
 const playB = document.getElementById("playB");
 const crossfader = document.getElementById("crossfader");
 
-/* 🔓 UNLOCK AUDIO (MOBILE FIX) */
+/* 🔓 UNLOCK AUDIO ON FIRST TOUCH (MOBILE FIX) */
 function unlockAudio() {
     trackA.volume = 0.5;
     trackB.volume = 0.5;
