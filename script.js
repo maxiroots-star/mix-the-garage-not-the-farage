@@ -3,28 +3,35 @@ const trackB = document.getElementById("trackB");
 
 const playA = document.getElementById("playA");
 const playB = document.getElementById("playB");
-
 const crossfader = document.getElementById("crossfader");
 
-/* MOBILE AUDIO UNLOCK */
-document.body.addEventListener("click", () => {
+/* 🔓 UNLOCK AUDIO (MOBILE FIX) */
+function unlockAudio() {
     trackA.volume = 0.5;
     trackB.volume = 0.5;
-}, { once: true });
 
-/* PLAY BUTTONS */
-playA.onclick = () => {
+    trackA.play().then(() => trackA.pause()).catch(() => {});
+    trackB.play().then(() => trackB.pause()).catch(() => {});
+}
+
+document.body.addEventListener("touchstart", unlockAudio, { once: true });
+document.body.addEventListener("click", unlockAudio, { once: true });
+
+/* ▶ PLAY TRACKS */
+playA.addEventListener("click", () => {
+    trackA.currentTime = 0;
     trackA.play();
-};
+});
 
-playB.onclick = () => {
+playB.addEventListener("click", () => {
+    trackB.currentTime = 0;
     trackB.play();
-};
+});
 
-/* CROSSFADER */
-crossfader.oninput = () => {
-    let v = crossfader.value / 100;
+/* 🎚 CROSSFADER */
+crossfader.addEventListener("input", () => {
+    const v = crossfader.value / 100;
 
     trackA.volume = 1 - v;
     trackB.volume = v;
-};
+});
