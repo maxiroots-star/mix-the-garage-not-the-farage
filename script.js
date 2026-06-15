@@ -5,19 +5,20 @@ const playA = document.getElementById("playA");
 const playB = document.getElementById("playB");
 const crossfader = document.getElementById("crossfader");
 
-/* 🔓 UNLOCK AUDIO ON FIRST TOUCH (MOBILE FIX) */
-function unlockAudio() {
+/* FORCE AUDIO UNLOCK */
+function unlock() {
     trackA.volume = 0.5;
     trackB.volume = 0.5;
 
-    trackA.play().then(() => trackA.pause()).catch(() => {});
-    trackB.play().then(() => trackB.pause()).catch(() => {});
+    // preload trick
+    trackA.play().then(() => trackA.pause()).catch(()=>{});
+    trackB.play().then(() => trackB.pause()).catch(()=>{});
 }
 
-document.body.addEventListener("touchstart", unlockAudio, { once: true });
-document.body.addEventListener("click", unlockAudio, { once: true });
+document.addEventListener("click", unlock, { once: true });
+document.addEventListener("touchstart", unlock, { once: true });
 
-/* ▶ PLAY TRACKS */
+/* PLAY BUTTONS */
 playA.addEventListener("click", () => {
     trackA.currentTime = 0;
     trackA.play();
@@ -28,9 +29,9 @@ playB.addEventListener("click", () => {
     trackB.play();
 });
 
-/* 🎚 CROSSFADER */
+/* CROSSFADER */
 crossfader.addEventListener("input", () => {
-    const v = crossfader.value / 100;
+    let v = crossfader.value / 100;
 
     trackA.volume = 1 - v;
     trackB.volume = v;
