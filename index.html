@@ -1,42 +1,26 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>DJ Mixer</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
 <body>
 
 <!-- VIDEO BACKGROUND -->
-<video autoplay muted loop id="bgVideo">
-    <source src="background.mp4" type="video/mp4">
+<video id="bgVideo" autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
 </video>
 
-<!-- OVERLAY -->
-<div id="overlay"></div>
+<!-- IMAGE BACKUP -->
+<div id="bgImage"></div>
 
-<!-- DJ UI -->
+<!-- UI -->
 <div id="ui">
 
     <h1 id="title">DJ MIXER</h1>
 
-    <div class="deck">
-        <button id="playA">PLAY A</button>
-    </div>
+    <button id="playA">PLAY TRACK A</button>
+    <button id="playB">PLAY TRACK B</button>
 
-    <div class="deck">
-        <button id="playB">PLAY B</button>
-    </div>
+    <input id="crossfader" type="range" min="0" max="100" value="50">
 
-    <div id="faderContainer">
-        <input type="range" id="crossfader" min="0" max="100" value="50">
-        <div class="labels">
-            <span>TRACK A</span>
-            <span>TRACK B</span>
-        </div>
+    <div id="labels">
+        <span>TRACK A</span>
+        <span>TRACK B</span>
     </div>
 
 </div>
