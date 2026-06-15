@@ -1,79 +1,68 @@
-
-html, body{
-    margin:0;
-    padding:0;
-    height:100%;
-    overflow:hidden;
-    font-family:Arial, sans-serif;
-    background:black;
+html, body {
+margin:0;
+padding:0;
+height:100%;
+overflow:hidden;
+font-family:Arial, sans-serif;
+background:black;
 }
 
-/* VIDEO BACKGROUND */
-#bgVideo{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:-2;
+/* VIDEO */
+#bgVideo {
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
 }
 
-/* DARK OVERLAY */
-#overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.4);
-    z-index:-1;
+/* IMAGE fallback */
+#bgImage {
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:url("background.jpg") center/cover no-repeat;
+z-index:-3;
 }
 
 /* UI */
-#ui{
-    position:relative;
-    text-align:center;
-    color:white;
-    padding-top:20px;
+#ui {
+position:relative;
+text-align:center;
+color:white;
+padding-top:40px;
 }
 
-#title{
-    font-size:32px;
-    margin-bottom:20px;
+#title {
+font-size:32px;
+margin-bottom:20px;
 }
 
-/* DECK BUTTONS */
-.deck{
-    margin:15px 0;
+button {
+display:block;
+margin:15px auto;
+padding:15px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:white;
+color:black;
+font-weight:bold;
 }
 
-button{
-    padding:15px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    background:white;
-    color:black;
-    font-weight:bold;
+#crossfader {
+width:85%;
+margin-top:30px;
 }
 
-/* CROSSFADER */
-#faderContainer{
-    margin-top:40px;
-    padding:20px;
-}
-
-#crossfader{
-    width:90%;
-}
-
-/* LABELS */
-.labels{
-    display:flex;
-    justify-content:space-between;
-    padding:0 20px;
-    margin-top:10px;
-    color:white;
-    font-size:14px;
+#labels {
+display:flex;
+justify-content:space-between;
+padding:0 30px;
+color:white;
+margin-top:10px;
 }
